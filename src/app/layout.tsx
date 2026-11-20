@@ -60,7 +60,7 @@ const personLd = {
 };
 
 /** Runs before first paint: flags JS + reduced motion so reveal states never flash. */
-const bootScript = `(function(){var d=document.documentElement;d.classList.add('js');try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('rm');}catch(e){}setTimeout(function(){d.classList.add('show-all')},6000);})();`;
+const bootScript = `(function(){var d=document.documentElement;d.classList.add('js');try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('rm');}catch(e){}try{var a=localStorage.getItem('adish:accent');if(a&&/^#[0-9a-f]{6}$/i.test(a))d.style.setProperty('--color-acc',a);}catch(e){}setTimeout(function(){d.classList.add('show-all')},6000);})();`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (

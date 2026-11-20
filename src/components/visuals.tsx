@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 /* Custom illustrations for the project cards. Pure SVG / CSS, no images.
    Every label in here is lifted from the project's own description. */
 
-const ACC = "#e8ff32";
+const ACC = "var(--color-acc)";
 const PAPER = "#f5f3ee";
 
 /** Minimal browser chrome: square, hairline, mono URL. */
@@ -149,7 +149,7 @@ export function CubeVisual() {
 export function CrowderaVisual() {
   return (
     <div className="absolute inset-0 grid place-items-center p-5" aria-hidden>
-      <div className="relative w-full max-w-[290px] -rotate-[2.5deg] bg-[#fafaf7] p-4 text-[#1d1d1f] shadow-[10px_10px_0_0_#e8ff32]">
+      <div className="relative w-full max-w-[290px] -rotate-[2.5deg] bg-[#fafaf7] p-4 text-[#1d1d1f] shadow-[10px_10px_0_0_var(--color-acc)]">
         <div className="flex items-center justify-between border-b border-[#1d1d1f]/25 pb-2">
           <span className="font-serif text-[13px] font-semibold tracking-wide">Impact Journal</span>
           <span className="font-mono text-[9px] tracking-widest opacity-60">NO. 01</span>
@@ -165,7 +165,7 @@ export function CrowderaVisual() {
           </div>
           <svg viewBox="0 0 72 88" className="h-full w-full">
             <rect width="72" height="88" fill="#1d1d1f" />
-            <circle cx="36" cy="34" r="14" fill="#e8ff32" />
+            <circle cx="36" cy="34" r="14" style={{ fill: "var(--color-acc)" }} />
             <path d="M0 88C6 62 24 54 36 54S66 62 72 88Z" fill="#fafaf7" />
           </svg>
         </div>

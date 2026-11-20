@@ -1,3 +1,5 @@
+import { sfx } from "./sfx";
+
 /**
  * The "assemble" replay: a swarm of cursors builds the page in front of you.
  *
@@ -30,8 +32,14 @@ type Item = {
 };
 type Block = { el: HTMLElement; items: Item[]; promise: Promise<void> | null; fin: boolean };
 
-const HUES = ["#ff6b5e", "#ffb02e", "#ffe14d", "#7dff8f", "#35e0c2", "#4db8ff", "#8f93ff", "#d07bff", "#ff7ac8"];
-const ROLES = ["layout", "type", "copy", "motion", "pixels", "a11y"];
+// 14 distinct hues so every agent is recognisable; the first eight also carry a role tag
+const HUES = [
+  "#ff6b5e", "#ffb02e", "#ffe14d", "#7dff8f", "#35e0c2", "#4db8ff", "#8f93ff",
+  "#d07bff", "#ff7ac8", "#ff4d8d", "#a3e635", "#22d3ee", "#fb923c", "#c084fc",
+];
+const ROLES = ["layout", "type", "copy", "motion", "pixels", "a11y", "data", "perf"];
+/** 1x in the HUD is this fraction of raw speed: a touch slower so each move can be followed. */
+const BASE = 0.78;
 
 const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
 const rnd = (a = 1, b?: number) => (b === undefined ? Math.random() * a : a + Math.random() * (b - a));
@@ -58,7 +66,7 @@ export function createEngine(stage: HTMLElement, opts: { count: number; scrollTo
   const tween = (dur: number, fn: (k: number) => void) =>
     new Promise<void>((res) => tweens.add({ t0: vt, dur: Math.max(1, dur), fn, res }));
   const advance = (dt: number) => {
-    vt += dt * speed;
+    vt += dt * speed * BASE;
     for (const x of [...timers]) {
       if (x.t <= vt) {
         timers.delete(x);
@@ -259,6 +267,7 @@ export function createEngine(stage: HTMLElement, opts: { count: number; scrollTo
       dim.textContent = `${Math.round(r.w * e)} × ${Math.round(r.h * e)}`;
     });
     a.mode("arrow");
+    sfx.tick();
   }
 
   function splitChars(el: HTMLElement) {
@@ -292,6 +301,7 @@ export function createEngine(stage: HTMLElement, opts: { count: number; scrollTo
       if (upto <= shown) return;
       for (let i = shown; i < upto; i++) spans[i].classList.add("v");
       shown = upto;
+      sfx.tick();
       const r = spans[upto - 1].getBoundingClientRect();
       if (r.height) {
         a.x = r.right + scrollX + 2;
@@ -313,6 +323,7 @@ export function createEngine(stage: HTMLElement, opts: { count: number; scrollTo
     } else if (it.kind === "mega") {
       await a.moveTo(r.x + r.w * rnd(0.2, 0.8), r.y + r.h * 0.5);
       a.click();
+      sfx.whoosh();
       el.classList.add("on");
       const t = el.querySelector<SVGElement>(".mega-stroke");
       tween(1500, (k) => t && (t.style.strokeDashoffset = String(3000 * (1 - ease(k)))));
@@ -320,6 +331,7 @@ export function createEngine(stage: HTMLElement, opts: { count: number; scrollTo
     } else {
       await a.moveTo(r.x + r.w * rnd(0.25, 0.75), r.y + r.h * rnd(0.3, 0.7));
       a.click();
+      sfx.click();
       el.classList.add("on");
       await wait(110);
     }
@@ -331,6 +343,7 @@ export function createEngine(stage: HTMLElement, opts: { count: number; scrollTo
     }
     done++;
     ev.progress(done, total);
+    sfx.pop(done / total);
     it.finish();
   }
 
@@ -444,7 +457,7 @@ export function createEngine(stage: HTMLElement, opts: { count: number; scrollTo
     last = now;
     if (!paused) {
       advance(dt);
-      for (const a of agents) if (a.idle) a.drift(dt * speed, vt);
+      for (const a of agents) if (a.idle) a.drift(dt * speed * BASE, vt);
     }
     for (const a of agents) a.render();
     // resume the tour after the visitor stops scrolling
@@ -459,6 +472,7 @@ export function createEngine(stage: HTMLElement, opts: { count: number; scrollTo
     if (finished) return;
     finished = true;
     idleMode = "ring";
+    sfx.chord();
     ev.status("Done");
     setState("done");
   }

@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { setLenis } from "@/lib/lenis";
+import { nextAccent, syncAccent } from "@/lib/accent";
+import { sfx } from "@/lib/sfx";
 
 /**
  * Page-level motion plumbing, rendered once:
@@ -27,6 +29,36 @@ export default function Boot() {
       gsap.ticker.remove(tick);
       lenis.destroy();
       setLenis(null);
+    };
+  }, []);
+
+  // Accent colour, C shortcut, and the optional click / key sounds
+  useEffect(() => {
+    syncAccent();
+    sfx.restore();
+    const typing = (t: EventTarget | null) => {
+      const el = t as HTMLElement | null;
+      return !!el && (/^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName) || el.isContentEditable);
+    };
+    const onDown = (e: PointerEvent) => {
+      if (!sfx.enabled) return;
+      sfx.unlock(); // a saved "on" waits for the first gesture
+      if ((e.target as HTMLElement | null)?.closest("[data-nosound]")) return;
+      sfx.click();
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (typing(e.target) || e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key === "c" || e.key === "C") nextAccent();
+      if (sfx.enabled && !e.repeat) {
+        sfx.unlock();
+        sfx.key(e.code);
+      }
+    };
+    window.addEventListener("pointerdown", onDown, { passive: true });
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("keydown", onKey);
     };
   }, []);
 

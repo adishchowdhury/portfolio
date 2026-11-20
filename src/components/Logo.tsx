@@ -16,16 +16,16 @@ export default function Logo({ size = 28, className = "" }: { size?: number; cla
     >
       <rect width="64" height="64" fill="#050505" />
       {/* lit top face */}
-      <polygon points="32,11 51.05,22 32,33 12.95,22" fill="#e8ff32" />
+      <polygon points="32,11 51.05,22 32,33 12.95,22" style={{ fill: "var(--color-acc)" }} />
       {/* the grid on the two side faces */}
-      <g stroke="#e8ff32" strokeWidth="1.5" opacity="0.8">
+      <g style={{ stroke: "var(--color-acc)" }} strokeWidth="1.5" opacity="0.8">
         <path d="M38.35 29.33V51.33M44.7 25.67V47.67M25.65 29.33V51.33M19.3 25.67V47.67" />
         <path d="M32 40.33L51.05 29.33M32 47.67L51.05 36.67M32 40.33L12.95 29.33M32 47.67L12.95 36.67" />
       </g>
       {/* one highlighted cell */}
       <polygon points="44.7,25.67 51.05,22 51.05,29.33 44.7,33" fill="#f5f3ee" />
       {/* outline + inner edges */}
-      <g stroke="#e8ff32" strokeWidth="2.4">
+      <g style={{ stroke: "var(--color-acc)" }} strokeWidth="2.4">
         <polygon points="32,11 51.05,22 51.05,44 32,55 12.95,44 12.95,22" />
         <path d="M12.95 22L32 33L51.05 22M32 33V55" />
       </g>

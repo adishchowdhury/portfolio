@@ -19,11 +19,21 @@ projects, toolbox, achievements, contact. Components never hold copy.
 - Contact links (`codeforces`, `twitter`) are hidden while their value is empty.
 - Set `NEXT_PUBLIC_SITE_URL` for correct Open Graph / canonical URLs in production.
 
+## Cursor, sound, colour
+
+- **Cursor** (desktop, fine pointer only): a Figma-style arrow in the accent colour, an I-beam over
+  running text, a crosshair over `data-cursor-type="cross"`. Interactive things get a trailing name
+  tag from `data-cursor="Label"` (links and buttons default to "Open"; `data-cursor=""` hides it).
+- **Sound** (nav toggle, off by default, remembered): synthesized key and click sounds, plus sounds
+  during the replay. No audio files — see `src/lib/sfx.ts`.
+- **Accent colour**: the swatch in the nav (or the **C** key) cycles six accents. Everything reads
+  `--color-acc`; canvases read `src/lib/accent.ts`. Default is electric yellow.
+
 ## Swap the portrait
 
-`public/img/portrait-cutout.png` is a transparent PNG (subject only). It sits on a yellow disc and
-breaks out of it; a negative-image "lens" follows the pointer. Any transparent cutout works —
-keep roughly a 5:7 portrait ratio and update `CUTOUT` in `src/components/Hero.tsx` if the name changes.
+`public/img/portrait-cutout.png` is a transparent PNG (subject only, 803×892). It sits on an accent
+disc and breaks out of it; a negative-image "lens" follows the pointer. Any transparent cutout works —
+update the `aspect-[w/h]` on the portrait frame in `src/components/Hero.tsx` if the ratio changes.
 
 ## The "assemble" replay
 

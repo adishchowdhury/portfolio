@@ -5,6 +5,7 @@ import { Pause, Play, RotateCcw, X } from "lucide-react";
 import { createEngine } from "@/lib/assemble";
 import { getLenis } from "@/lib/lenis";
 import { site } from "@/content/site";
+import { SoundToggle } from "./Controls";
 
 type Engine = ReturnType<typeof createEngine>;
 type Phase = "idle" | "running" | "paused" | "done";
@@ -148,6 +149,7 @@ export default function Assembler() {
               >
                 {SPEEDS[speedIx]}x
               </button>
+              <SoundToggle label={false} className="!border-line !px-2 !py-2" />
               <button type="button" onClick={close} aria-label="Close replay">
                 <X size={13} />
               </button>

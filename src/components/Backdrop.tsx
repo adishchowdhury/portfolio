@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { accent } from "@/lib/accent";
 
 /**
  * Fixed backdrop with two layers:
@@ -107,7 +108,7 @@ export default function Backdrop() {
       }
       f.strokeStyle = "rgba(245,243,238,0.2)";
       f.stroke(cool);
-      f.strokeStyle = "rgba(232,255,50,0.62)";
+      f.strokeStyle = `rgba(${accent.rgb},0.62)`;
       f.stroke(warm);
     };
 
@@ -190,7 +191,7 @@ export default function Backdrop() {
       // yellow corner marks
       for (const x of [-1, 1]) for (const y of [-1, 1]) for (const z of [-1, 1]) {
         const p = proj(V(x, y, z));
-        c.fillStyle = `rgba(232,255,50,${0.9 * fadeOut})`;
+        c.fillStyle = `rgba(${accent.rgb},${0.9 * fadeOut})`;
         c.fillRect(p.x - 3, p.y - 3, 6, 6);
       }
     };

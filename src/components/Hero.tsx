@@ -181,18 +181,18 @@ export default function Hero() {
         <figure
           data-h
           style={{ transform: "translateY(16px)" }}
-          className="hero-portrait relative z-30 col-span-12 mx-auto mt-8 w-[min(78vw,360px)] lg:absolute lg:right-pad lg:top-5 lg:mx-0 lg:mt-0 lg:w-[min(24vw,370px)]"
+          className="hero-portrait relative z-30 col-span-12 mx-auto mt-8 w-[min(84vw,400px)] lg:absolute lg:right-pad lg:top-6 lg:mx-0 lg:mt-0 lg:w-[min(29vw,440px)]"
         >
-          <div ref={lensHost} data-b="box" data-cursor="" className="relative aspect-[771/1080] w-full">
-            <div className="hero-disc absolute inset-x-[2%] bottom-[1%] aspect-square rounded-full bg-acc" />
+          <div ref={lensHost} data-b="box" data-cursor="" data-cursor-type="cross" className="relative aspect-[803/892] w-full">
+            <div className="hero-disc absolute inset-x-[7%] bottom-[0%] aspect-square rounded-full bg-acc" />
             <div className="hero-cut portrait-fade absolute inset-0">
               <Image
                 src={CUTOUT}
                 alt={`Portrait of ${site.name.display}`}
                 fill
                 priority
-                sizes="(min-width:1024px) 410px, 78vw"
-                className="object-contain object-bottom contrast-[1.05]"
+                sizes="(min-width:1024px) 440px, 84vw"
+                className="object-contain object-bottom contrast-[1.04]"
               />
               {/* pointer lens: the same photo as a negative */}
               <div ref={lens} className="lens pointer-events-none absolute inset-0" aria-hidden>
@@ -201,7 +201,7 @@ export default function Hero() {
                   alt=""
                   fill
                   loading="eager"
-                  sizes="(min-width:1024px) 410px, 78vw"
+                  sizes="(min-width:1024px) 440px, 84vw"
                   className="object-contain object-bottom invert"
                 />
               </div>
@@ -214,6 +214,7 @@ export default function Hero() {
           ref={megaWrap}
           data-b="mega"
           data-cursor="Hover"
+          data-cursor-type="cross"
           className="hero-mega relative z-10 col-span-12 -mt-[3.5vw] select-none lg:-mt-[5.2vw]"
         >
           <svg viewBox={`0 0 ${VB_W} ${VB_H}`} className="block h-auto w-full overflow-visible" role="img" aria-label={hero.outline}>
@@ -245,7 +246,7 @@ export default function Hero() {
               lengthAdjust="spacingAndGlyphs"
               fontFamily="var(--font-display)"
               fontSize={FONT}
-              fill="#e8ff32"
+              style={{ fill: "var(--color-acc)" }}
               clipPath="url(#mega-clip)"
               aria-hidden
             >
@@ -317,7 +318,7 @@ export default function Hero() {
                 className={`flex flex-col gap-1 border-line px-pad py-5 ${i % 2 === 0 ? "border-r" : ""} ${i < 2 ? "border-b lg:border-b-0" : ""} ${i < 3 ? "lg:border-r" : "lg:border-r-0"}`}
               >
                 <dt className="mono text-mute">{s.label}</dt>
-                <dd className="display text-[clamp(2.6rem,5vw,4.6rem)] leading-none">
+                <dd className={`display leading-none ${numeric ? "text-[clamp(2.6rem,5vw,4.6rem)]" : "text-[clamp(2.2rem,3.9vw,3.6rem)]"}`}>
                   <span data-count={numeric ? s.value : undefined}>{numeric ? s.value.padStart(2, "0") : s.value}</span>
                 </dd>
                 <dd className="text-[13px] text-mute">{s.note}</dd>

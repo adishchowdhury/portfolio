@@ -109,8 +109,8 @@ export const timeline: {
   },
   {
     title: "Beginning competitive programming",
-    body: "Specialist rating on Codeforces, plus olympiads, CTFs and hackathons.",
-    note: "codeforces — specialist",
+    body: "Codeforces contests, plus olympiads, CTFs and hackathons.",
+    note: "codeforces",
   },
   {
     title: "Starting my engineering journey",
@@ -318,7 +318,7 @@ export const beyond: {
   { category: "Communities & learning", title: "BS, Data Science & Applications", context: "IIT Madras, 2025–2029" },
   { category: "Communities & learning", title: "B.E., Information Technology", context: "Jadavpur University, 2025–2029" },
   { category: "Communities & learning", title: "Reliance Foundation Undergraduate Scholar", context: "Scholarship programme" },
-  { category: "Communities & learning", title: "Competitive programming", context: "Codeforces", result: "Specialist" },
+  { category: "Communities & learning", title: "Competitive programming", context: "Codeforces" },
   { category: "Honors", title: "JEE Mains & JEE Advanced", context: "Qualified, among ~1.5 million and ~0.25 million candidates" },
   { category: "Honors", title: "WBJEE", context: "Qualified, among ~0.2 million candidates" },
   { category: "Honors", title: "National Cyber Olympiad", context: "Gold Medal of Distinction" },
@@ -338,7 +338,7 @@ export const interests = [
 /* ------------------------------------------------------------------ */
 
 export const stats = [
-  { label: "Competitive programming", value: "Specialist", note: "on Codeforces" },
+  { label: "Competitive programming", value: "Codeforces", note: "contests and problem solving" },
   {
     label: "Projects shipped",
     value: String(projects.filter((p) => p.live).length),

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { accent } from "@/lib/accent";
 
 /**
  * Particles circulate along the edge of the closing section, get shoved aside by the pointer,
@@ -79,7 +80,7 @@ export default function ParticleBorder() {
       ctx.setLineDash([]);
 
       // corner brackets
-      ctx.strokeStyle = "#e8ff32";
+      ctx.strokeStyle = accent.hex;
       ctx.lineWidth = 2;
       const L = 22;
       for (const [cx, cy, sx, sy] of [
@@ -118,13 +119,13 @@ export default function ParticleBorder() {
 
         const x = base.x + p.dx;
         const y = base.y + p.dy;
-        ctx.fillStyle = p.hot ? `rgba(232,255,50,${p.a})` : `rgba(245,243,238,${p.a * 0.7})`;
+        ctx.fillStyle = p.hot ? `rgba(${accent.rgb},${p.a})` : `rgba(245,243,238,${p.a * 0.7})`;
         ctx.fillRect(x - p.r / 2, y - p.r / 2, p.r, p.r);
         if (p.hot) {
           // comet tail: the same particle a few steps back along the border
           for (let k = 1; k <= 4; k++) {
             const tail = at(p.s - p.v * k * 9, p.off);
-            ctx.fillStyle = `rgba(232,255,50,${p.a * (1 - k / 5) * 0.55})`;
+            ctx.fillStyle = `rgba(${accent.rgb},${p.a * (1 - k / 5) * 0.55})`;
             ctx.fillRect(tail.x + p.dx - p.r / 2, tail.y + p.dy - p.r / 2, p.r, p.r);
           }
         }
@@ -135,7 +136,7 @@ export default function ParticleBorder() {
       for (let i = 0; i < trail.length; i++) {
         const t = trail[i];
         const k = 1 - (now - t.t) / 650;
-        ctx.fillStyle = `rgba(232,255,50,${k * 0.8})`;
+        ctx.fillStyle = `rgba(${accent.rgb},${k * 0.8})`;
         const r = 1 + k * 4;
         ctx.fillRect(t.x - r / 2, t.y - r / 2, r, r);
       }

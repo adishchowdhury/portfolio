@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import { nav, site } from "@/content/site";
 import { scrollToHash } from "@/lib/lenis";
 import Logo from "./Logo";
+import { AccentSwitch, SoundToggle } from "./Controls";
 
 export default function Nav() {
   const [active, setActive] = useState<string>("");
@@ -79,9 +80,14 @@ export default function Nav() {
             />
             <span className="relative h-2 w-2 rounded-full bg-acc" />
           </span>
-          <span className="hidden sm:inline">{site.availability}</span>
-          <span className="sm:hidden">Open</span>
+          <span className="hidden xl:inline">{site.availability}</span>
+          <span className="xl:hidden">Open</span>
         </p>
+
+        <div className="flex items-center gap-2">
+          <AccentSwitch />
+          <SoundToggle />
+        </div>
 
         <button
           type="button"

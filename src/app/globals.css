@@ -312,8 +312,8 @@ html.has-cursor button,
 html.has-cursor [data-cursor] {
   cursor: none;
 }
-.cursor-dot,
-.cursor-ring {
+.fcursor,
+.ftag {
   position: fixed;
   left: 0;
   top: 0;
@@ -321,45 +321,38 @@ html.has-cursor [data-cursor] {
   pointer-events: none;
   will-change: transform;
 }
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  margin: -4px 0 0 -4px;
+.fcursor svg {
+  position: absolute;
+  display: none;
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.55));
+}
+/* the arrow's tip sits exactly on the pointer, like Figma's */
+.fcursor[data-kind="arrow"] .fc-arrow {
+  display: block;
+  left: -2px;
+  top: -1.5px;
+}
+.fcursor[data-kind="ibeam"] .fc-ibeam,
+.fcursor[data-kind="cross"] .fc-cross {
+  display: block;
+  left: -9px;
+  top: -9px;
+}
+.ftag {
+  margin: 20px 0 0 14px;
+  padding: 2px 8px;
   background: var(--color-acc);
-}
-.cursor-ring {
-  width: 44px;
-  height: 44px;
-  margin: -22px 0 0 -22px;
-  border: 1px solid rgb(245 243 238 / 0.5);
-  display: grid;
-  place-items: center;
-  transition:
-    width 0.25s,
-    height 0.25s,
-    margin 0.25s,
-    background 0.25s,
-    border-color 0.25s;
-}
-.cursor-ring[data-on="true"] {
-  width: 84px;
-  height: 84px;
-  margin: -42px 0 0 -42px;
-  background: var(--color-acc);
-  border-color: var(--color-acc);
-}
-.cursor-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--color-ink);
-  opacity: 0;
-  transition: opacity 0.2s;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+  border-radius: 3px 10px 10px 10px;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.4);
 }
-.cursor-ring[data-on="true"] .cursor-label {
-  opacity: 1;
+.ftag:empty {
+  display: none;
 }
 
 /* ------------------------------------------------------------------ */
