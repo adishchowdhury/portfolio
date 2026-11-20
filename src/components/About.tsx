@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { gsap, ScrollTrigger, SplitText, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { about, timeline } from "@/content/site";
+import Rich from "./Rich";
 
 export default function About() {
   const root = useRef<HTMLElement>(null);
@@ -75,7 +76,7 @@ export default function About() {
             <div className="mt-8 max-w-[46ch] space-y-4 text-paper/80">
               {about.paragraphs.map((p, i) => (
                 <p key={i} data-r="up" data-b="text" className={i === 0 ? "text-paper" : undefined}>
-                  {p}
+                  <Rich text={p} />
                 </p>
               ))}
             </div>

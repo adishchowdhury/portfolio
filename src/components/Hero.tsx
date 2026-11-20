@@ -7,6 +7,7 @@ import { gsap, ScrollTrigger, SplitText, useGSAP, prefersReducedMotion } from "@
 import { hero, site, stats } from "@/content/site";
 import { scrollToHash } from "@/lib/lenis";
 import Workspace from "./Workspace";
+import Rich from "./Rich";
 
 const VB_W = 1000;
 const VB_H = 236;
@@ -268,9 +269,9 @@ export default function Hero() {
               data-h
               data-b="text"
               style={{ transform: "translateY(16px)" }}
-              className="max-w-[54ch] text-[clamp(15px,1.15vw,18px)] leading-relaxed text-paper/80"
+              className="max-w-[62ch] text-[clamp(15px,1.15vw,18px)] leading-relaxed text-paper/80"
             >
-              {hero.paragraph}
+              <Rich text={hero.paragraph} />
             </p>
             <div data-h data-b="box" style={{ transform: "translateY(16px)" }} className="mt-7 flex flex-wrap gap-3">
               <a href="#work" onClick={(e) => go(e, "#work")} className="btn btn-acc" data-cursor="Work">

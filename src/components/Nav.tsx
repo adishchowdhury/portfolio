@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { nav, site } from "@/content/site";
 import { scrollToHash } from "@/lib/lenis";
+import Logo from "./Logo";
 
 export default function Nav() {
   const [active, setActive] = useState<string>("");
@@ -41,11 +42,11 @@ export default function Nav() {
         <a
           href="#top"
           onClick={(e) => go(e, "#top")}
-          className="display flex items-center gap-2 text-[22px] tracking-wide"
+          className="group display flex items-center gap-2.5 text-[22px] tracking-wide"
           aria-label={`${site.name.display} — back to top`}
           data-cursor="Top"
         >
-          <span className="grid h-6 w-6 place-items-center bg-acc text-[15px] text-ink">A</span>
+          <Logo size={28} className="transition-transform duration-500 group-hover:rotate-[60deg]" />
           ADISH
         </a>
 

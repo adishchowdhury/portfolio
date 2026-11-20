@@ -53,7 +53,7 @@ export const hero = {
   headline: "ADISH",
   outline: "DEVELOPER",
   paragraph:
-    "I'm studying IT at Jadavpur University and spend most of my time building. Right now that means LLM and agent systems, a company called Threadpool, and pull requests to Kestra and Kubernetes.",
+    "I'm studying IT at **Jadavpur University** and **Data Science at IIT Madras**, and spend most of my time building: LLM and agent systems, a company called Threadpool, and pull requests to Kestra and Kubernetes.",
 };
 
 /** The little "workspace" board. Every line is something real from the resume or brief. */
@@ -83,7 +83,7 @@ export const workspace = {
 export const about = {
   heading: ["HOW I", "GOT", "HERE"],
   paragraphs: [
-    "I'm studying Information Technology at Jadavpur University, alongside a BS in Data Science and Applications at IIT Madras. Both started in 2025.",
+    "I'm studying Information Technology at **Jadavpur University**, alongside a BS in **Data Science and Applications at IIT Madras**. Both started in 2025.",
     "I build software and explore intelligent systems: prompt and workflow optimization, AI-assisted products, and the agent tooling that is growing up around LLMs.",
     "Outside class I run companies and contribute to open source. CEO and co-founder at Threadpool, CTO at GoRoute, and merged pull requests in Kestra and Kubernetes.",
     "I call myself an improver: learn it, build with it, get better at it, repeat.",

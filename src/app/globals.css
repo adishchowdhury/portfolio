@@ -597,3 +597,14 @@ html.asm .asm-ch:not(.v) {
 html.rm .replay-cta {
   display: none;
 }
+
+/* highlighter: marks key names in running text */
+.hl {
+  color: var(--color-ink);
+  background: var(--color-acc);
+  padding: 0.04em 0.28em;
+  margin: 0 -0.06em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  font-weight: 500;
+}
